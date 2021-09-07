@@ -3,11 +3,20 @@ const app = express()
 const helmet = require("helmet");
 const fetch = require('isomorphic-fetch');
 const cors = require('cors');
+const path = require('path');
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(helmet());
 app.use(cors()); //use everything i imported
+
+// ADD THIS
+app.use(express.static(path.join(__dirname, 'frontend/build')))
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname+'/frontend/build/index.html'))
+})
+
 
 app.get('/search/:term/:media', async(req, res) => {
     try{
