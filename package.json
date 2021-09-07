@@ -5,7 +5,8 @@
   "main": "Server.js",
   "scripts": {
     "test": "mocha",
-    "start": "nodemon Server.js"
+    "dev": "nodemon Server.js",
+    "start": "node Server.js"
   },
   "author": "",
   "license": "ISC",
