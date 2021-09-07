@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "dev": "nodemon Server.js",
-    "start": "node Server.js"
+    "start": "node Server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
