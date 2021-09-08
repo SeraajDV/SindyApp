@@ -23,11 +23,13 @@ app.get('/search/:term/:media', async(req, res) => {
     }
     });
 
-app.use(express.static(path.join(__dirname, 'frontend/build')))
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'))
 
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname,'frontend', 'build', 'index.html'))
-})
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {//listens to port given or will listen to port 8080
